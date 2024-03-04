@@ -1,5 +1,9 @@
 package pcd.lab02.lost_updates;
 
+import pcd.lab02.lost_updates.counter.Counter;
+import pcd.lab02.lost_updates.counter.SafeCounter;
+import pcd.lab02.lost_updates.counter.UnsafeCounter;
+
 public class TestLostUpdates {
 
 	public static void main(String[] args) throws Exception {

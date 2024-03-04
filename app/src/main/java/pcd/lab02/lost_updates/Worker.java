@@ -1,5 +1,6 @@
 package pcd.lab02.lost_updates;
 
+import pcd.lab02.lost_updates.counter.Counter;
 
 public class Worker extends Thread {
 	
