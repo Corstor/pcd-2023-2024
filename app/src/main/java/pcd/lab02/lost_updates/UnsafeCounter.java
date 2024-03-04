@@ -1,6 +1,6 @@
 package pcd.lab02.lost_updates;
 
-public class UnsafeCounter {
+public class UnsafeCounter implements Counter {
 
 	private int cont;
 	

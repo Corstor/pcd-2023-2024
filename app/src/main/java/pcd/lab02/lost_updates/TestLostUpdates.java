@@ -4,9 +4,9 @@ public class TestLostUpdates {
 
 	public static void main(String[] args) throws Exception {
 		
-		int ntimes = 100; // try with different values: 100, 200, 1000, 5000, ...
+		int ntimes = 100000; // try with different values: 100, 200, 1000, 5000, ...
 		
-		UnsafeCounter c = new UnsafeCounter(0);
+		Counter c = new UnsafeCounter(0);
 		Worker w1 = new Worker("Worker-A", c, ntimes);
 		Worker w2 = new Worker("Worker-B", c, ntimes);
 
@@ -18,9 +18,20 @@ public class TestLostUpdates {
 
 		w1.join();
 		w2.join();
+
+		Counter safeCounter = new SafeCounter(0);
+		Worker w3 = new Worker("Worker-A", safeCounter, ntimes);
+		Worker w4 = new Worker("Worker-B", safeCounter, ntimes);
+		
+		w3.start();
+		w4.start();
+
+		w3.join();
+		w4.join();
 		
 		cron.stop();
 		
-		System.out.println("Counter final value: " + c.getValue() + " in " + cron.getTime()+"ms.");
+		System.out.println("Counter final value UNSAFE: " + c.getValue());
+		System.out.println("Counter final value SAFE: " + safeCounter.getValue() + " in " + cron.getTime()+"ms.");
 	}
 }
